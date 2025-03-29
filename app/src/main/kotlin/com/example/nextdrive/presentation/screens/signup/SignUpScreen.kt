@@ -1,4 +1,4 @@
-package com.example.nextdrive.presentation.screens
+package com.example.nextdrive.presentation.screens.signup
 
 import android.util.Patterns
 import androidx.compose.foundation.clickable
@@ -7,7 +7,6 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.*
@@ -15,7 +14,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -27,7 +25,7 @@ import androidx.navigation.compose.rememberNavController
 
 
 @Composable
-fun SignUpScreen(navController: NavController) {
+fun SignUpScreen(navController: NavController, signUpView: SignUpView) {
     val context = LocalContext.current
 
     var email by remember { mutableStateOf("") }
@@ -173,7 +171,8 @@ fun SignUpScreen(navController: NavController) {
         Button(
             onClick = {
                 if (isFormValid) {
-                    // Перейти на следующий экран регистрации
+                    signUpView.updateData("email", email)
+                    signUpView.updateData("password", password)
                     navController.navigate("signup_step2_screen")
                 } else {
                     errorMessage = "Пожалуйста, исправьте ошибки на форме."
@@ -200,6 +199,7 @@ fun SignUpScreen(navController: NavController) {
 @Composable
 fun PreviewSignUpScreen() {
     SignUpScreen(
-        rememberNavController()
+        rememberNavController(),
+        SignUpView()
     )
 }

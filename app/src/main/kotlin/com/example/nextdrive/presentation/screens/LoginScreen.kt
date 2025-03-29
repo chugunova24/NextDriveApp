@@ -26,11 +26,19 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.nextdrive.R
 import androidx.compose.foundation.clickable
+import com.example.nextdrive.domain.AuthUseCase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 
 
 @Composable
 fun LoginScreen(navController: NavController) {
     val context = LocalContext.current
+    val authUseCase = AuthUseCase()
+
+    val coroutineScope = rememberCoroutineScope()
 
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -117,15 +125,18 @@ fun LoginScreen(navController: NavController) {
             // Кнопка "Войти"
             Button(
                 onClick = {
-                    val success = authenticateUser(email, password, context)
-                    if (success) {
+//                    coroutineScope.launch {
+                        coroutineScope.launch {
+                        val success = authenticateUser(email, password, authUseCase, context)
+
+                        if (success) {
                         saveUserSession(context)
-                        navController.navigate("main_screen") {
-                            popUpTo("login_screen") { inclusive = true }
+                        navController.navigate("main_screen")
+                        } else {
+                            errorMessage = "Ошибка входа. Проверьте email и пароль."
                         }
-                    } else {
-                        errorMessage = "Ошибка входа. Проверьте email и пароль."
-                    }
+                        }
+//                    }
                 },
                 modifier = Modifier.fillMaxWidth(),
                 enabled = isFormValid,
@@ -172,16 +183,20 @@ fun LoginScreen(navController: NavController) {
 }
 
 
-
-// TODO("Не реализована интеграция с сервером аунтентификации.")
-// Заглушка для проверки логина (здесь должен быть API-запрос)
-fun authenticateUser(email: String, password: String, context: Context): Boolean {
-    return if (email == "test@example.com" && password == "password") {
-        true
-    } else {
-        Toast.makeText(context, "Неверные данные", Toast.LENGTH_SHORT).show()
-        false
-    }
+suspend fun authenticateUser(
+    email: String,
+    password: String,
+    authUseCase: AuthUseCase,
+    context: Context
+): Boolean {
+    var result = false
+        try {
+            authUseCase.signIn(email, password) // Это асинхронный вызов
+            result = true
+        } catch (e: Exception) {
+            Toast.makeText(context, "authenticateUser: ${e.message}", Toast.LENGTH_SHORT).show()
+        }
+    return result
 }
 
 

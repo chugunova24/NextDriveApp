@@ -2,7 +2,7 @@ package com.example.nextdrive.presentation.screens
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,7 +34,7 @@ fun LoginOrSignUpScreen(navController: NavController) {
             Button(
                 onClick = { navController.navigate("login_screen") },
                 modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFF2A1246))
+                colors = ButtonDefaults.buttonColors(containerColor  = Color(0xFF2A1246))
             ) {
                 Text(text = "Войти", color = Color.White)
             }
@@ -44,7 +44,7 @@ fun LoginOrSignUpScreen(navController: NavController) {
             Button(
                 onClick = { navController.navigate("signup_screen") },
                 modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(backgroundColor = Color.White),
+                colors = ButtonDefaults.buttonColors(containerColor = Color.White),
                 border = BorderStroke(1.dp, Color.Gray),
             ) {
                 Text(text = "Зарегистрироваться", color = Color.Black)

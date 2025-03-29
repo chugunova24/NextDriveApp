@@ -11,13 +11,15 @@ import com.example.nextdrive.presentation.screens.isOnboardingCompleted
 import com.example.nextdrive.presentation.screens.saveOnboardingCompleted
 import androidx.compose.runtime.*
 import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.nextdrive.presentation.screens.LoginOrSignUpScreen
 import com.example.nextdrive.presentation.screens.LoginScreen
 import com.example.nextdrive.presentation.screens.OnboardingScreen
-import com.example.nextdrive.presentation.screens.SignUpScreen
-import com.example.nextdrive.presentation.screens.SignUpStep2Screen
-import com.example.nextdrive.presentation.screens.SignUpStep3Screen
-import com.example.nextdrive.presentation.screens.SuccessSignUpScreen
+import com.example.nextdrive.presentation.screens.signup.SignUpScreen
+import com.example.nextdrive.presentation.screens.signup.SignUpStep2Screen
+import com.example.nextdrive.presentation.screens.signup.SignUpStep3Screen
+import com.example.nextdrive.presentation.screens.signup.SuccessSignUpScreen
+import com.example.nextdrive.presentation.screens.signup.SignUpView
 
 
 fun isUserAuthenticated(context: Context): Boolean {
@@ -29,6 +31,8 @@ fun isUserAuthenticated(context: Context): Boolean {
 @Composable
 fun NavGraph(navController: NavHostController) {
     val context = LocalContext.current
+
+    val signUpView: SignUpView = viewModel()
 
     // Проверяем, был ли онбординг пройден
     var isFirstLaunch by remember { mutableStateOf(!isOnboardingCompleted(context)) }
@@ -75,16 +79,16 @@ fun NavGraph(navController: NavHostController) {
             LoginScreen(navController)
         }
         composable("signup_screen") {
-            SignUpScreen(navController) // Точка входа в экран регистрации
+            SignUpScreen(navController, signUpView) // Точка входа в экран регистрации
         }
         composable("signup_step2_screen") {
-            SignUpStep2Screen(navController)
+            SignUpStep2Screen(navController, signUpView)
         }
         composable("signup_step3_screen") {
-            SignUpStep3Screen(navController)
+            SignUpStep3Screen(navController, signUpView)
         }
         composable("success_signup_screen") {
-            SuccessSignUpScreen(navController)
+            SuccessSignUpScreen(navController, signUpView)
         }
         composable("main_screen") {
             MainScreen()

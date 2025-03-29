@@ -1,4 +1,4 @@
-package com.example.nextdrive.presentation.screens
+package com.example.nextdrive.presentation.screens.signup
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -17,10 +17,28 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import com.example.nextdrive.R
+import androidx.compose.runtime.LaunchedEffect
+import com.example.nextdrive.domain.AuthUseCase
 
 
 @Composable
-fun SuccessSignUpScreen(navController: NavController) {
+fun SuccessSignUpScreen(navController: NavController, signUpView: SignUpView) {
+    val authUseCase = AuthUseCase()
+
+    val email = signUpView.getData("email") ?: ""
+    val password = signUpView.getData("password") ?: ""
+
+
+    LaunchedEffect(Unit) {
+        try {
+            authUseCase.signUp(email = email, password = password)
+            navController.navigate("main_screen")
+        } catch (e: Exception) {
+            throw Exception("SuccessSignUpScreen: ${e.localizedMessage}")
+        }
+    }
+
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -39,7 +57,7 @@ fun SuccessSignUpScreen(navController: NavController) {
                 .align(Alignment.Center)
                 .fillMaxHeight(),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center // Центрируем содержимое по вертикали
+            verticalArrangement = Arrangement.Center
         ) {
             Image(
                 painter = painterResource(id = R.drawable.check_circle_2),
@@ -87,6 +105,7 @@ fun SuccessSignUpScreen(navController: NavController) {
 @Composable
 fun PreviewSuccessSignUpScreen() {
     SuccessSignUpScreen(
-        rememberNavController()
+        rememberNavController(),
+        SignUpView()
     )
 }

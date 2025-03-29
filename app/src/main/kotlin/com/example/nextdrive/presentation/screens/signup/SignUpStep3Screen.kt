@@ -1,4 +1,4 @@
-package com.example.nextdrive.presentation.screens
+package com.example.nextdrive.presentation.screens.signup
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
@@ -19,24 +19,20 @@ import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Button
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
-import androidx.compose.material.TextButton
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.layout.ContentScale
-import coil.compose.rememberImagePainter
 import androidx.compose.ui.res.painterResource
+import coil.compose.AsyncImage
 import com.example.nextdrive.R
 
 
 @Composable
-fun SignUpStep3Screen(navController: NavController) {
+fun SignUpStep3Screen(navController: NavController, signUpView: SignUpView) {
     var profilePhotoUri by remember { mutableStateOf<Uri?>(null) }
     var licensePhotoUri by remember { mutableStateOf<Uri?>(null) }
     var passportPhotoUri by remember { mutableStateOf<Uri?>(null) }
@@ -87,20 +83,23 @@ fun SignUpStep3Screen(navController: NavController) {
         Spacer(modifier = Modifier.height(40.dp))
 
         if (profilePhotoUri != null) {
-            Image(
-                painter = rememberImagePainter(profilePhotoUri),
+            AsyncImage(
+                model = profilePhotoUri,
                 contentDescription = "Profile photo",
-                modifier = Modifier.fillMaxWidth().size(128.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .size(128.dp),
                 contentScale = ContentScale.Crop
             )
         } else {
             Image(
                 painter = painterResource(id = R.drawable.avatar),
                 contentDescription = "Add profile photo",
-                modifier = Modifier.fillMaxWidth().size(128.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .size(128.dp)
             )
         }
-
 
         Spacer(modifier = Modifier.height(40.dp))
 
@@ -212,6 +211,10 @@ fun SignUpStep3Screen(navController: NavController) {
         Button(
             onClick = {
                 if (isFormValid) {
+                    signUpView.updateData("licenseNumber", licenseNumber)
+                    signUpView.updateData("issueDate", issueDate)
+                    //   Нет сохранения profilePhotoUri, licensePhotoUri, passportPhotoUri
+
                     navController.navigate("success_signup_screen")
                 } else {
                     errorMessage = "Пожалуйста заполните все обязательные поля."
@@ -232,6 +235,7 @@ fun SignUpStep3Screen(navController: NavController) {
 @Composable
 fun PreviewSignUpStep3Screen() {
     SignUpStep3Screen(
-        rememberNavController()
+        rememberNavController(),
+        SignUpView()
     )
 }

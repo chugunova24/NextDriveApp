@@ -1,4 +1,4 @@
-package com.example.nextdrive.presentation.screens
+package com.example.nextdrive.presentation.screens.signup
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
@@ -19,7 +19,7 @@ import androidx.navigation.compose.rememberNavController
 
 
 @Composable
-fun SignUpStep2Screen(navController: NavController) {
+fun SignUpStep2Screen(navController: NavController, signUpView: SignUpView) {
     var lastName by remember { mutableStateOf("") }
     var firstName by remember { mutableStateOf("") }
     var middleName by remember { mutableStateOf("") }
@@ -176,7 +176,12 @@ fun SignUpStep2Screen(navController: NavController) {
         Button(
             onClick = {
                 if (isFormValid) {
-                    // переходим на следующий шаг регистрации
+                    signUpView.updateData("lastName", lastName)
+                    signUpView.updateData("firstName", firstName)
+                    signUpView.updateData("middleName", middleName)
+                    signUpView.updateData("birthDate", birthDate)
+                    signUpView.updateData("selectedGender", selectedGender)
+
                     navController.navigate("signup_step3_screen")
                 } else {
                     errorMessage = "Пожалуйста, заполните все обязательные поля."
@@ -196,6 +201,7 @@ fun SignUpStep2Screen(navController: NavController) {
 @Composable
 fun PreviewSignUpStep2Screen() {
     SignUpStep2Screen(
-        rememberNavController()
+        rememberNavController(),
+        SignUpView()
     )
 }
