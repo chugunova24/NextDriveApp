@@ -1,11 +1,15 @@
-package com.example.nextdrive.domain
+package com.example.nextdrive.domain.authentication.usecase
 
-import androidx.lifecycle.LifecycleCoroutineScope
-import com.example.nextdrive.data.supabase
+import com.example.nextdrive.common.supabase.supabase
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.auth.providers.builtin.Email
-import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.launch
+import io.github.jan.supabase.gotrue.user.UserSession
+//import timber.log.Timber
+//import com.example.nextdrive.common.supabase.supabase
+//import io.github.jan.supabase.auth.auth
+//import io.github.jan.supabase.auth.providers.builtin.Email
+import io.github.jan.supabase.auth.user.UserInfo
+import io.github.jan.supabase.auth.user.Identity
 
 
 class AuthUseCase {

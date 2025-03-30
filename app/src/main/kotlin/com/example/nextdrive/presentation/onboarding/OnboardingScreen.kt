@@ -1,4 +1,4 @@
-package com.example.nextdrive.presentation.screens
+package com.example.nextdrive.presentation.onboarding
 
 import android.content.Context
 import androidx.compose.foundation.Image

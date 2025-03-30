@@ -2,30 +2,38 @@ package com.example.nextdrive.navigation
 
 import android.content.Context
 import androidx.compose.runtime.Composable
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.NavHostController
-import com.example.nextdrive.presentation.screens.MainScreen
-import com.example.nextdrive.presentation.screens.SplashScreen
-import com.example.nextdrive.presentation.screens.isOnboardingCompleted
-import com.example.nextdrive.presentation.screens.saveOnboardingCompleted
-import androidx.compose.runtime.*
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import com.example.nextdrive.presentation.onboarding.OnboardingScreen
+import com.example.nextdrive.presentation.onboarding.isOnboardingCompleted
+import com.example.nextdrive.presentation.onboarding.saveOnboardingCompleted
 import com.example.nextdrive.presentation.screens.LoginOrSignUpScreen
-import com.example.nextdrive.presentation.screens.LoginScreen
-import com.example.nextdrive.presentation.screens.OnboardingScreen
+import com.example.nextdrive.presentation.login.LoginScreen
+import com.example.nextdrive.presentation.screens.MainScreen
+import com.example.nextdrive.presentation.screens.SplashScreen
 import com.example.nextdrive.presentation.screens.signup.SignUpScreen
 import com.example.nextdrive.presentation.screens.signup.SignUpStep2Screen
 import com.example.nextdrive.presentation.screens.signup.SignUpStep3Screen
-import com.example.nextdrive.presentation.screens.signup.SuccessSignUpScreen
 import com.example.nextdrive.presentation.screens.signup.SignUpView
+import com.example.nextdrive.presentation.screens.signup.SuccessSignUpScreen
+
+
 
 
 fun isUserAuthenticated(context: Context): Boolean {
     val sharedPreferences = context.getSharedPreferences("app_preferences", Context.MODE_PRIVATE)
     return sharedPreferences.getBoolean("is_logged_in", false)
 }
+
+
+
 
 
 @Composable

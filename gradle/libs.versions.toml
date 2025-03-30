@@ -18,6 +18,8 @@ compose-foundation = "1.7.8"
 compose-activity = "1.10.1"
 navigation = "2.8.9"
 
+koin = "4.0.2"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -37,6 +39,12 @@ androidx-compose-foundation = { module = "androidx.compose.foundation:foundation
 androidx-compose-activity = { module = "androidx.activity:activity-compose", version.ref = "compose-activity" }
 androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose-ui" }
 androidx-compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
+
+
+koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
+koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
+koin-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }
+koin-work = { group = "io.insert-koin", name = "koin-androidx-workmanager", version.ref = "koin" }
 
 
 [plugins]

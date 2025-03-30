@@ -92,4 +92,30 @@ dependencies {
 
     implementation("io.coil-kt:coil-compose:2.6.0")
 
+    // To use the Animator APIs
+    implementation("androidx.core:core-animation:1.0.0")
+    // To test the Animator APIs
+    androidTestImplementation("androidx.core:core-animation-testing:1.0.0")
+    // Optional - To enable APIs that query the performance characteristics of GMS devices.
+    implementation("androidx.core:core-performance:1.0.0")
+    // Optional - to use ShortcutManagerCompat to donate shortcuts to be used by Google
+    implementation("androidx.core:core-google-shortcuts:1.1.0")
+    // Optional - to support backwards compatibility of RemoteViews
+    implementation("androidx.core:core-remoteviews:1.1.0")
+    // Optional - APIs for SplashScreen, including compatibility helpers on devices prior Android 12
+    implementation("androidx.core:core-splashscreen:1.2.0-beta01")
+
+    //Koin new version
+//    implementation("io.insert-koin:koin-android:4.0.2")
+    // Java Compatibility
+//    implementation("io.insert-koin:koin-android-compat:4.0.2")
+    // App Startup
+//    implementation("io.insert-koin:koin-androidx-startup:4.0.2")
+//    implementation("koin-androidx-compose:4.0.2")
+//    implementation("koin-androidx-compose-navigation:4.0.2")
+
+    implementation(libs.koin.compose)
+
+    implementation("com.jakewharton.timber:timber:5.0.1")
+
 }

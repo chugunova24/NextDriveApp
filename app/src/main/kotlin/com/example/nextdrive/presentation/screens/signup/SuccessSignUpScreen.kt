@@ -18,7 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import com.example.nextdrive.R
 import androidx.compose.runtime.LaunchedEffect
-import com.example.nextdrive.domain.AuthUseCase
+import com.example.nextdrive.domain.authentication.usecase.AuthUseCase
 
 
 @Composable
