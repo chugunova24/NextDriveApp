@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUpFragment2">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:labelFor="@id/edit_lastname"
+        android:text="@string/last_name"
+
+        app:layout_constraintBottom_toTopOf="@id/edit_lastname"
+        app:layout_constraintStart_toStartOf="@id/edit_lastname" />
+
+    <EditText
+        android:id="@+id/edit_lastname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:background="@drawable/edit_text_border"
+        android:fontFamily="@font/montserrat_medium"
+        android:hint="@string/enter_lastname"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="15dp"
+        android:textSize="14sp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:labelFor="@id/edit_firstname"
+        android:text="@string/first_name"
+
+        app:layout_constraintBottom_toTopOf="@id/edit_firstname"
+        app:layout_constraintStart_toStartOf="@id/edit_firstname" />
+
+    <EditText
+        android:id="@+id/edit_firstname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/edit_text_border"
+        android:fontFamily="@font/montserrat_medium"
+        android:hint="@string/enter_firstname"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="15dp"
+        android:paddingEnd="35dp"
+        android:textSize="14sp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_lastname"
+        tools:ignore="RtlSymmetry" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:labelFor="@id/edit_surname"
+        android:text="@string/surname"
+
+        app:layout_constraintBottom_toTopOf="@id/edit_surname"
+        app:layout_constraintStart_toStartOf="@id/edit_surname" />
+
+    <EditText
+        android:id="@+id/edit_surname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/edit_text_border"
+        android:fontFamily="@font/montserrat_medium"
+        android:hint="@string/enter_surname"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="15dp"
+        android:paddingEnd="35dp"
+        android:textSize="14sp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_firstname"
+        tools:ignore="RtlSymmetry" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:labelFor="@id/edit_birthdate"
+        android:text="@string/birth_date"
+
+        app:layout_constraintBottom_toTopOf="@id/edit_birthdate"
+        app:layout_constraintStart_toStartOf="@id/edit_birthdate" />
+
+    <EditText
+        android:id="@+id/edit_birthdate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/edit_text_border"
+        android:drawableStart="@drawable/calendar_days"
+        android:drawablePadding="10dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:hint="DD/MM/YYYY"
+        android:inputType="date"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="15dp"
+        android:paddingEnd="35dp"
+        android:textSize="14sp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_surname"
+        tools:ignore="HardcodedText,RtlSymmetry" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="@string/sex"
+
+        app:layout_constraintBottom_toTopOf="@id/rg_sex"
+        app:layout_constraintStart_toStartOf="@id/rg_sex" />
+
+    <RadioGroup
+        android:id="@+id/rg_sex"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_birthdate">
+
+        <RadioButton
+            android:id="@+id/radio_male"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="@string/male" />
+
+        <RadioButton
+            android:id="@+id/radio_female"
+            android:layout_width="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="@string/female" />
+
+    </RadioGroup>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
